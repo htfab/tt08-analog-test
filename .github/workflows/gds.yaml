@@ -26,6 +26,8 @@ jobs:
           gds_path: gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
           lef_path: lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
           verilog_path: src/project.v
+          tools-repo: htfab/tt-support-tools
+          tools-ref: tt08-3v3
   
   precheck:
     needs: gds
@@ -33,6 +35,9 @@ jobs:
     steps:
       - name: Run Tiny Tapeout Precheck
         uses: TinyTapeout/tt-gds-action/precheck@tt08
+        with:
+          tools-repo: htfab/tt-support-tools
+          tools-ref: tt08-3v3
 
   viewer:
     needs: gds
